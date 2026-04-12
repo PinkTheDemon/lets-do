@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let's do</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div>
+        <p class="eyebrow">Personal Flow</p>
+        <h1>Let's do</h1>
+        <p class="sidebar-copy">围绕分类、任务和执行感建立一个轻量待办 MVP。</p>
+      </div>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>分类</h2>
+          <button id="seed-categories-button" class="ghost-button" type="button">重置默认</button>
+        </div>
+
+        <form id="category-form" class="stack-form">
+          <label>
+            <span>分类名称</span>
+            <input id="category-name-input" name="name" type="text" maxlength="20" placeholder="例如：工作" required>
+          </label>
+          <label>
+            <span>颜色</span>
+            <input id="category-color-input" name="color" type="color" value="#ff7a59">
+          </label>
+          <button type="submit">新增分类</button>
+        </form>
+
+        <ul id="category-list" class="category-list"></ul>
+      </section>
+    </aside>
+
+    <main class="main-panel">
+      <section class="hero-card">
+        <div>
+          <p class="eyebrow">MVP Slice</p>
+          <h2>先把记录和完成跑顺</h2>
+          <p class="hero-copy">首轮聚焦最小主流程：新增任务、按分类查看、切换完成状态，以及刷新后数据仍然存在。</p>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <span>待处理</span>
+            <strong id="todo-count">0</strong>
+          </div>
+          <div>
+            <span>已完成</span>
+            <strong id="completed-count">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace-grid">
+        <section class="panel">
+          <div class="panel-header">
+            <h2>快速新增任务</h2>
+            <p id="selected-category-caption" class="muted">当前分类：全部</p>
+          </div>
+
+          <form id="task-form" class="stack-form">
+            <label>
+              <span>任务标题</span>
+              <input id="task-title-input" name="title" type="text" maxlength="80" placeholder="下一步要完成什么？" required>
+            </label>
+            <label>
+              <span>任务说明</span>
+              <textarea id="task-description-input" name="description" rows="4" maxlength="200" placeholder="可选，补充一句执行提示"></textarea>
+            </label>
+            <label>
+              <span>归属分类</span>
+              <select id="task-category-select" name="categoryId"></select>
+            </label>
+            <button type="submit">创建任务</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>任务列表</h2>
+            <label class="toggle">
+              <input id="show-completed-toggle" type="checkbox">
+              <span>显示已完成</span>
+            </label>
+          </div>
+
+          <div id="task-list" class="task-list"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <template id="task-card-template">
+    <article class="task-card">
+      <label class="task-check">
+        <input class="task-status-input" type="checkbox">
+        <span class="checkbox-indicator"></span>
+      </label>
+      <div class="task-content">
+        <div class="task-heading">
+          <h3 class="task-title"></h3>
+          <span class="task-category-chip"></span>
+        </div>
+        <p class="task-description"></p>
+        <p class="task-meta"></p>
+      </div>
+    </article>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
