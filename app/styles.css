@@ -54,6 +54,17 @@ button:hover {
   box-shadow: none;
 }
 
+.danger-button {
+  color: #7d2417;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(188, 63, 30, 0.28);
+  box-shadow: none;
+}
+
+.danger-button:hover {
+  box-shadow: 0 8px 18px rgba(188, 63, 30, 0.14);
+}
+
 .app-shell {
   display: grid;
   grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
@@ -165,6 +176,7 @@ h2 {
 }
 
 input[type="text"],
+input[type="search"],
 textarea,
 select,
 input[type="color"] {
@@ -174,6 +186,10 @@ input[type="color"] {
   background: rgba(255, 255, 255, 0.72);
   padding: 0.85rem 0.95rem;
   color: var(--text);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--accent);
 }
 
 input[type="color"] {
@@ -322,6 +338,155 @@ input[type="color"] {
   color: var(--muted);
 }
 
+.inline-check {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+}
+
+.view-tabs {
+  display: inline-flex;
+  gap: 0.35rem;
+  padding: 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.view-tab {
+  min-width: 4rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 14px;
+  color: var(--muted);
+  background: transparent;
+  box-shadow: none;
+}
+
+.view-tab.active {
+  color: #fff7f1;
+  background: linear-gradient(135deg, #d95d39, #bc3f1e);
+  box-shadow: 0 8px 18px rgba(186, 76, 37, 0.2);
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.search-field span {
+  color: var(--muted);
+}
+
+.task-edit,
+.subtask-panel {
+  margin-top: 0.85rem;
+}
+
+.task-edit[hidden] {
+  display: none;
+}
+
+.task-edit {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.task-edit label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.task-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+
+.task-actions button {
+  padding: 0.58rem 0.82rem;
+}
+
+.sync-actions {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.subtask-panel {
+  display: none;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.subtask-panel.expanded {
+  display: block;
+}
+
+.subtask-list {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0;
+  margin: 0 0 0.75rem;
+  list-style: none;
+}
+
+.subtask-item,
+.subtask-empty {
+  padding: 0.65rem 0.75rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--muted);
+}
+
+.subtask-item.completed span {
+  text-decoration: line-through;
+}
+
+.subtask-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.subtask-edit-button,
+.subtask-delete-button {
+  padding: 0.38rem 0.62rem;
+}
+
+.subtask-edit-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.5rem;
+}
+
+.subtask-edit-form[hidden] {
+  display: none;
+}
+
+.subtask-edit-form button {
+  padding: 0.58rem 0.72rem;
+}
+
+.subtask-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.6rem;
+}
+
+.subtask-form button {
+  white-space: nowrap;
+}
+
 .empty-state {
   padding: 1rem;
   color: var(--muted);
@@ -339,5 +504,53 @@ input[type="color"] {
 
   .hero-stats {
     width: 100%;
+  }
+
+  .panel-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-shell {
+    padding: 0.85rem;
+  }
+
+  .view-tabs,
+  .view-tab,
+  .subtask-form,
+  .subtask-edit-form {
+    width: 100%;
+  }
+
+  .view-tabs,
+  .subtask-form,
+  .subtask-edit-form {
+    grid-template-columns: 1fr;
+  }
+
+  .view-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .view-tab {
+    min-width: 0;
+  }
+
+  .subtask-form,
+  .subtask-edit-form {
+    display: grid;
+  }
+
+  .subtask-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .subtask-edit-button,
+  .subtask-delete-button {
+    grid-column: 2;
+    justify-self: start;
   }
 }

@@ -35,6 +35,17 @@
 
         <ul id="category-list" class="category-list"></ul>
       </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>数据同步</h2>
+        </div>
+        <div class="sync-actions">
+          <button id="export-data-button" type="button">导出数据</button>
+          <button id="import-data-button" class="ghost-button" type="button">导入数据</button>
+          <input id="import-data-input" type="file" accept="application/json,.json" hidden>
+        </div>
+      </section>
     </aside>
 
     <main class="main-panel">
@@ -76,6 +87,10 @@
               <span>归属分类</span>
               <select id="task-category-select" name="categoryId"></select>
             </label>
+            <label class="inline-check">
+              <input id="task-today-input" name="isToday" type="checkbox" checked>
+              <span>加入今日视图</span>
+            </label>
             <button type="submit">创建任务</button>
           </form>
         </section>
@@ -83,11 +98,18 @@
         <section class="panel">
           <div class="panel-header">
             <h2>任务列表</h2>
-            <label class="toggle">
-              <input id="show-completed-toggle" type="checkbox">
-              <span>显示已完成</span>
-            </label>
+            <div class="view-tabs" aria-label="任务视图">
+              <button class="view-tab active" type="button" data-view="all">全部</button>
+              <button class="view-tab" type="button" data-view="pending">待处理</button>
+              <button class="view-tab" type="button" data-view="today">今日</button>
+              <button class="view-tab" type="button" data-view="completed">已完成</button>
+            </div>
           </div>
+
+          <label class="search-field">
+            <span>搜索任务</span>
+            <input id="task-search-input" type="search" placeholder="输入标题、说明或子任务">
+          </label>
 
           <div id="task-list" class="task-list"></div>
         </section>
@@ -107,7 +129,41 @@
           <span class="task-category-chip"></span>
         </div>
         <p class="task-description"></p>
+        <div class="task-edit" hidden>
+          <label>
+            <span>标题</span>
+            <input class="task-edit-title" type="text" maxlength="80">
+          </label>
+          <label>
+            <span>说明</span>
+            <textarea class="task-edit-description" rows="3" maxlength="200"></textarea>
+          </label>
+          <label>
+            <span>分类</span>
+            <select class="task-edit-category"></select>
+          </label>
+          <label class="inline-check">
+            <input class="task-edit-today" type="checkbox">
+            <span>加入今日视图</span>
+          </label>
+          <div class="task-actions">
+            <button class="task-save-button" type="button">保存</button>
+            <button class="task-cancel-button ghost-button" type="button">取消</button>
+          </div>
+        </div>
         <p class="task-meta"></p>
+        <div class="subtask-panel">
+          <ul class="subtask-list"></ul>
+          <form class="subtask-form">
+            <input class="subtask-title-input" type="text" maxlength="80" placeholder="拆成一个子任务">
+            <button type="submit">添加</button>
+          </form>
+        </div>
+        <div class="task-actions">
+          <button class="task-edit-button ghost-button" type="button">编辑</button>
+          <button class="task-toggle-subtasks-button ghost-button" type="button">子任务</button>
+          <button class="task-delete-button danger-button" type="button">删除</button>
+        </div>
       </div>
     </article>
   </template>
